@@ -12,6 +12,8 @@
               pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="4.1.0">
   <MAINGROUP id="RJnGtj" name="AudioProcessParameterPlugin">
     <GROUP id="{413EE95F-3B29-51D8-3629-AC477128C875}" name="Source">
+      <FILE id="pLCAPa" name="ParameterSlider.h" compile="0" resource="0"
+            file="Source/ParameterSlider.h"/>
       <FILE id="ACknd9" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="Lsz04O" name="PluginProcessor.h" compile="0" resource="0"
