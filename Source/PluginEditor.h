@@ -16,6 +16,47 @@
 
 
 //==============================================================================
+// This is a handy slider subclass that controls an AudioProcessorParameter
+// (may move this class into the library itself at some point in the future..)
+class ParameterSlider   : public Slider,
+                                                                           private Timer
+{
+public:
+    ParameterSlider (AudioProcessorParameter& p)
+        : Slider (p.getName (256)), param (p)
+    {
+        setRange (0.0, 1.0, 0.0);
+        startTimerHz (30);
+        updateSliderPos();
+    }
+
+    void valueChanged() override
+    {
+        param.setValueNotifyingHost ((float) Slider::getValue());
+    }
+
+    void timerCallback() override       { updateSliderPos(); }
+
+    void startedDragging() override     { param.beginChangeGesture(); }
+    void stoppedDragging() override     { param.endChangeGesture();   }
+
+    double getValueFromText (const String& text) override   { return param.getValueForText (text); }
+    String getTextFromValue (double value) override         { return param.getText ((float) value, 1024); }
+
+    void updateSliderPos()
+    {
+        const float newValue = param.getValue();
+
+        if (newValue != (float) Slider::getValue() && ! isMouseButtonDown())
+            Slider::setValue (newValue);
+    }
+
+    AudioProcessorParameter& param;
+
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterSlider)
+};
+
+//==============================================================================
 /**
 */
 class AudioProcessParameterPluginAudioProcessorEditor  : public AudioProcessorEditor
@@ -32,30 +73,16 @@ private:
     enum SymbolicIndexNames     // Use symbolic names instead of            // better way?
     {                           // managedParameters index numbers.
         boolName,               // Must have the same ordering as
-        choiceName,             // processor's managedParameters.
-        floatName,
+        floatName,              // processor's managedParameters.
         intName
     };
 
-    enum RelativeLayout
-    {                           // Measurements for relative layout
-        unit = 8,
-        width = 64 * unit,
-        margin = 2 * unit,
-        widthComponent = width - margin * 2,
-        heightComponent = 3 * unit
-    };
-
-    class ParameterSlider;
-
-    Label boolLabel_   {"", "Bool"}; // (No component name, just set label text)
-    Label choiceLabel_ {"", "Choice"};
-    Label floatLabel_  {"", "Float"};
-    Label intLabel_    {"", "Int"};
-    ScopedPointer<ParameterSlider> boolSlider_;
-    ComboBox choiceComboBox_ { };
-    ScopedPointer<ParameterSlider> floatSlider_;
-    ScopedPointer<ParameterSlider> intSlider_;
+    Label boolLabel_;
+    Label floatLabel_;
+    Label intLabel_;
+    ParameterSlider boolSlider_;
+    ParameterSlider floatSlider_;
+    ParameterSlider intSlider_;
 
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.

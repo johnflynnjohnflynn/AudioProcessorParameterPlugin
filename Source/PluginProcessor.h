@@ -52,15 +52,11 @@ public:
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
-    const StringArray& getChoiceStrings() { return choiceStrings; };
-
 private:
     AudioParameterBool*   boolParam_   {nullptr};   // When we addParameter() to the
-    AudioParameterChoice* choiceParam_ {nullptr};   // processor's managedParameters
-    AudioParameterFloat*  floatParam_  {nullptr};   // OwnedArray, we rely on that
-    AudioParameterInt*    intParam_    {nullptr};   // to manage/delete/etc.
-
-    StringArray choiceStrings;                      // Strings to display in choiceParam_
+    AudioParameterFloat*  floatParam_  {nullptr};   // processor's managedParameters
+    AudioParameterInt*    intParam_    {nullptr};   // OwnedArray, we rely on that
+                                                    // to manage/delete/etc.
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioProcessParameterPluginAudioProcessor)

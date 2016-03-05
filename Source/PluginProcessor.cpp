@@ -18,14 +18,7 @@ AudioProcessParameterPluginAudioProcessor::AudioProcessParameterPluginAudioProce
 
     // We addParameter() to the processor's OwnedArray<AudioProcessorParameter>
     // managedParameters, which takes ownership and deletes appropriately
-    addParameter (boolParam_   = new AudioParameterBool {"BoolID", "Bool", false});
-
-    constexpr int defaultChoiceIndex = 0;
-    choiceStrings.add ("First option");
-    choiceStrings.add ("Another...");
-    choiceStrings.add ("A third option");
-    addParameter (choiceParam_ = new AudioParameterChoice {"ChoiceID", "Choice", choiceStrings, defaultChoiceIndex});
-
+    addParameter (boolParam_   = new AudioParameterBool  {"BoolID", "Bool", false});
     addParameter (floatParam_  = new AudioParameterFloat {"FloatID", "Float", -24.0f, 0.0f, 0.0f});
     addParameter (intParam_    = new AudioParameterInt   {"IntID",   "Int",   -10,   10,    0});
 
