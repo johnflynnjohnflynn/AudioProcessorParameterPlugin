@@ -19,11 +19,11 @@
 //==============================================================================
 /**
 */
-class AudioProcessParameterPluginAudioProcessorEditor  : public AudioProcessorEditor
+class AudioProcessorParameterPluginAudioProcessorEditor  : public AudioProcessorEditor
 {
 public:
-    AudioProcessParameterPluginAudioProcessorEditor (AudioProcessParameterPluginAudioProcessor&);
-    ~AudioProcessParameterPluginAudioProcessorEditor();
+    AudioProcessorParameterPluginAudioProcessorEditor (AudioProcessorParameterPluginAudioProcessor&);
+    ~AudioProcessorParameterPluginAudioProcessorEditor();
 
     //==============================================================================
     void paint (Graphics&) override;
@@ -46,9 +46,9 @@ private:
 
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
-    AudioProcessParameterPluginAudioProcessor& processor;
+    AudioProcessorParameterPluginAudioProcessor& processor;
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioProcessParameterPluginAudioProcessorEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioProcessorParameterPluginAudioProcessorEditor)
 };
 
 

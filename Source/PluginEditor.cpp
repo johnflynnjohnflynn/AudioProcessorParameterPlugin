@@ -13,7 +13,7 @@
 
 
 //==============================================================================
-AudioProcessParameterPluginAudioProcessorEditor::AudioProcessParameterPluginAudioProcessorEditor (AudioProcessParameterPluginAudioProcessor& p)
+AudioProcessorParameterPluginAudioProcessorEditor::AudioProcessorParameterPluginAudioProcessorEditor (AudioProcessorParameterPluginAudioProcessor& p)
     : AudioProcessorEditor (&p),
       boolLabel_  {String::empty, "Bool"}, // (No component name, just set label text)
       floatLabel_ {String::empty, "Float"},
@@ -38,17 +38,17 @@ AudioProcessParameterPluginAudioProcessorEditor::AudioProcessParameterPluginAudi
     setSize (512, height);                              // would be better here!
 }
 
-AudioProcessParameterPluginAudioProcessorEditor::~AudioProcessParameterPluginAudioProcessorEditor()
+AudioProcessorParameterPluginAudioProcessorEditor::~AudioProcessorParameterPluginAudioProcessorEditor()
 {
 }
 
 //==============================================================================
-void AudioProcessParameterPluginAudioProcessorEditor::paint (Graphics& g)
+void AudioProcessorParameterPluginAudioProcessorEditor::paint (Graphics& g)
 {
     g.fillAll (Colours::lightgrey);
 }
 
-void AudioProcessParameterPluginAudioProcessorEditor::resized()
+void AudioProcessorParameterPluginAudioProcessorEditor::resized()
 {
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..

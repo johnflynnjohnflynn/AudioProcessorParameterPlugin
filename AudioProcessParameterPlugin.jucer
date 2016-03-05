@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="S2aaYl" name="AudioProcessParameterPlugin" projectType="audioplug"
-              version="1.0.0" bundleIdentifier="com.yourcompany.AudioProcessParameterPlugin"
+<JUCERPROJECT id="S2aaYl" name="AudioProcessorParameterPlugin" projectType="audioplug"
+              version="1.0.0" bundleIdentifier="com.yourcompany.AudioProcessorParameterPlugin"
               includeBinaryInAppConfig="1" buildVST="1" buildVST3="0" buildAU="1"
-              buildRTAS="0" buildAAX="0" pluginName="AudioProcessParameterPlugin"
-              pluginDesc="AudioProcessParameterPlugin" pluginManufacturer="yourcompany"
+              buildRTAS="0" buildAAX="0" pluginName="AudioProcessorParameterPlugin"
+              pluginDesc="AudioProcessorParameterPlugin" pluginManufacturer="yourcompany"
               pluginManufacturerCode="Manu" pluginCode="S2aa" pluginChannelConfigs=""
               pluginIsSynth="0" pluginWantsMidiIn="0" pluginProducesMidiOut="0"
-              pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="AudioProcessParameterPluginAU"
-              pluginRTASCategory="" aaxIdentifier="com.yourcompany.AudioProcessParameterPlugin"
+              pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="AudioProcessorParameterPluginAU"
+              pluginRTASCategory="" aaxIdentifier="com.yourcompany.AudioProcessorParameterPlugin"
               pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="4.1.0">
-  <MAINGROUP id="RJnGtj" name="AudioProcessParameterPlugin">
+  <MAINGROUP id="RJnGtj" name="AudioProcessorParameterPlugin">
     <GROUP id="{413EE95F-3B29-51D8-3629-AC477128C875}" name="Source">
       <FILE id="pLCAPa" name="ParameterSlider.h" compile="0" resource="0"
             file="Source/ParameterSlider.h"/>

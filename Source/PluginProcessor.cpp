@@ -13,7 +13,7 @@
 
 
 //==============================================================================
-AudioProcessParameterPluginAudioProcessor::AudioProcessParameterPluginAudioProcessor()
+AudioProcessorParameterPluginAudioProcessor::AudioProcessorParameterPluginAudioProcessor()
 {
     // addParameter()s to the processor's OwnedArray<AudioProcessorParameter>
     // managedParameters (which takes ownership and deletes appropriately)
@@ -24,17 +24,17 @@ AudioProcessParameterPluginAudioProcessor::AudioProcessParameterPluginAudioProce
     NonMember::printParams (*this);
 }
 
-AudioProcessParameterPluginAudioProcessor::~AudioProcessParameterPluginAudioProcessor()
+AudioProcessorParameterPluginAudioProcessor::~AudioProcessorParameterPluginAudioProcessor()
 {
 }
 
 //==============================================================================
-const String AudioProcessParameterPluginAudioProcessor::getName() const
+const String AudioProcessorParameterPluginAudioProcessor::getName() const
 {
     return JucePlugin_Name;
 }
 
-bool AudioProcessParameterPluginAudioProcessor::acceptsMidi() const
+bool AudioProcessorParameterPluginAudioProcessor::acceptsMidi() const
 {
    #if JucePlugin_WantsMidiInput
     return true;
@@ -43,7 +43,7 @@ bool AudioProcessParameterPluginAudioProcessor::acceptsMidi() const
    #endif
 }
 
-bool AudioProcessParameterPluginAudioProcessor::producesMidi() const
+bool AudioProcessorParameterPluginAudioProcessor::producesMidi() const
 {
    #if JucePlugin_ProducesMidiOutput
     return true;
@@ -52,49 +52,49 @@ bool AudioProcessParameterPluginAudioProcessor::producesMidi() const
    #endif
 }
 
-double AudioProcessParameterPluginAudioProcessor::getTailLengthSeconds() const
+double AudioProcessorParameterPluginAudioProcessor::getTailLengthSeconds() const
 {
     return 0.0;
 }
 
-int AudioProcessParameterPluginAudioProcessor::getNumPrograms()
+int AudioProcessorParameterPluginAudioProcessor::getNumPrograms()
 {
     return 1;   // NB: some hosts don't cope very well if you tell them there are 0 programs,
                 // so this should be at least 1, even if you're not really implementing programs.
 }
 
-int AudioProcessParameterPluginAudioProcessor::getCurrentProgram()
+int AudioProcessorParameterPluginAudioProcessor::getCurrentProgram()
 {
     return 0;
 }
 
-void AudioProcessParameterPluginAudioProcessor::setCurrentProgram (int index)
+void AudioProcessorParameterPluginAudioProcessor::setCurrentProgram (int index)
 {
 }
 
-const String AudioProcessParameterPluginAudioProcessor::getProgramName (int index)
+const String AudioProcessorParameterPluginAudioProcessor::getProgramName (int index)
 {
     return String();
 }
 
-void AudioProcessParameterPluginAudioProcessor::changeProgramName (int index, const String& newName)
+void AudioProcessorParameterPluginAudioProcessor::changeProgramName (int index, const String& newName)
 {
 }
 
 //==============================================================================
-void AudioProcessParameterPluginAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
+void AudioProcessorParameterPluginAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
 }
 
-void AudioProcessParameterPluginAudioProcessor::releaseResources()
+void AudioProcessorParameterPluginAudioProcessor::releaseResources()
 {
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
 }
 
-void AudioProcessParameterPluginAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages)
+void AudioProcessorParameterPluginAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages)
 {
     const int totalNumInputChannels  = getTotalNumInputChannels();
     const int totalNumOutputChannels = getTotalNumOutputChannels();
@@ -114,18 +114,18 @@ void AudioProcessParameterPluginAudioProcessor::processBlock (AudioSampleBuffer&
 }
 
 //==============================================================================
-bool AudioProcessParameterPluginAudioProcessor::hasEditor() const
+bool AudioProcessorParameterPluginAudioProcessor::hasEditor() const
 {
     return true; // (change this to false if you choose to not supply an editor)
 }
 
-AudioProcessorEditor* AudioProcessParameterPluginAudioProcessor::createEditor()
+AudioProcessorEditor* AudioProcessorParameterPluginAudioProcessor::createEditor()
 {
-    return new AudioProcessParameterPluginAudioProcessorEditor (*this);
+    return new AudioProcessorParameterPluginAudioProcessorEditor (*this);
 }
 
 //==============================================================================
-void AudioProcessParameterPluginAudioProcessor::getStateInformation (MemoryBlock& destData)
+void AudioProcessorParameterPluginAudioProcessor::getStateInformation (MemoryBlock& destData)
 {
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
@@ -146,7 +146,7 @@ void AudioProcessParameterPluginAudioProcessor::getStateInformation (MemoryBlock
     copyXmlToBinary (xml, destData);
 }
 
-void AudioProcessParameterPluginAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
+void AudioProcessorParameterPluginAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
@@ -171,7 +171,7 @@ void AudioProcessParameterPluginAudioProcessor::setStateInformation (const void*
 // This creates new instances of the plugin..
 AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
-    return new AudioProcessParameterPluginAudioProcessor();
+    return new AudioProcessorParameterPluginAudioProcessor();
 }
 
 

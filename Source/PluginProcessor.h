@@ -17,12 +17,12 @@
 //==============================================================================
 /**
 */
-class AudioProcessParameterPluginAudioProcessor  : public AudioProcessor
+class AudioProcessorParameterPluginAudioProcessor  : public AudioProcessor
 {
 public:
     //==============================================================================
-    AudioProcessParameterPluginAudioProcessor();
-    ~AudioProcessParameterPluginAudioProcessor();
+    AudioProcessorParameterPluginAudioProcessor();
+    ~AudioProcessorParameterPluginAudioProcessor();
 
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
@@ -58,7 +58,7 @@ private:
     AudioParameterInt*   intParam_   {nullptr};     // owns and manages. (See xtor.)
 
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioProcessParameterPluginAudioProcessor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioProcessorParameterPluginAudioProcessor)
 };
 
 
