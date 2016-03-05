@@ -18,7 +18,7 @@ AudioProcessParameterPluginAudioProcessorEditor::AudioProcessParameterPluginAudi
       boolLabel_  {"", "Bool"}, // (No component name, just set label text)
       floatLabel_ {"", "Float"},
       intLabel_   {"", "Int"},
-      boolSlider_  {*p.getParameters()[boolName]},              // better way of getting param? public?!
+      boolSlider_  {*p.getParameters()[boolName]},
       floatSlider_ {*p.getParameters()[floatName]},
       intSlider_   {*p.getParameters()[intName]},
       processor (p)
@@ -34,13 +34,12 @@ AudioProcessParameterPluginAudioProcessorEditor::AudioProcessParameterPluginAudi
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
     const int numRows = p.getNumParameters();
-    const int height = numRows * 48 + 24;
-    setSize (512, height);
+    const int height = numRows * 48 + 24;               // obviously named constants
+    setSize (512, height);                              // would be better here!
 }
 
 AudioProcessParameterPluginAudioProcessorEditor::~AudioProcessParameterPluginAudioProcessorEditor()
 {
-    // Sliders are ScopedPointer<Slider>s so deletes are handled
 }
 
 //==============================================================================
@@ -54,12 +53,19 @@ void AudioProcessParameterPluginAudioProcessorEditor::resized()
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
 
-    boolSlider_ .setBounds (16, 32 + 0 * 48, 480, 24);  // obviously named constants
-    floatSlider_.setBounds (16, 32 + 1 * 48, 480, 24);  // would be better here!
-    intSlider_  .setBounds (16, 32 + 2 * 48, 480, 24);
+    constexpr int unit = 8;
+    constexpr int margin = 2 * unit;
+    constexpr int offsetAdd = 4 * unit;
+    constexpr int offsetMult = 6 * unit;
+    constexpr int sliderWidth = 60 * unit;
+    constexpr int sliderHeight = 3 * unit;
 
-    boolLabel_  .setBounds (16, 12 + 0 * 48, 480, 24);
-    floatLabel_ .setBounds (16, 12 + 1 * 48, 480, 24);
-    intLabel_   .setBounds (16, 12 + 2 * 48, 480, 24);
+    boolSlider_ .setBounds (margin, offsetAdd + 0 * offsetMult, sliderWidth, sliderHeight);
+    floatSlider_.setBounds (margin, offsetAdd + 1 * offsetMult, sliderWidth, sliderHeight);
+    intSlider_  .setBounds (margin, offsetAdd + 2 * offsetMult, sliderWidth, sliderHeight);
+
+    boolLabel_  .setBounds (margin, 12 + 0 * offsetMult, sliderWidth, sliderHeight);
+    floatLabel_ .setBounds (margin, 12 + 1 * offsetMult, sliderWidth, sliderHeight);
+    intLabel_   .setBounds (margin, 12 + 2 * offsetMult, sliderWidth, sliderHeight);
 
 }

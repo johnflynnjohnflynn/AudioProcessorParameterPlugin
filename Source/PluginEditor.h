@@ -19,7 +19,7 @@
 // This is a handy slider subclass that controls an AudioProcessorParameter
 // (may move this class into the library itself at some point in the future..)
 class ParameterSlider   : public Slider,
-                                                                           private Timer
+                          private Timer
 {
 public:
     ParameterSlider (AudioProcessorParameter& p)
@@ -70,10 +70,10 @@ public:
     void resized() override;
 
 private:
-    enum SymbolicIndexNames     // Use symbolic names instead of            // better way?
+    enum SymbolicIndexNames     // Use symbolic names instead of
     {                           // managedParameters index numbers.
         boolName,               // Must have the same ordering as
-        floatName,              // processor's managedParameters.
+        floatName,              // processor's managedParameters!
         intName
     };
 
