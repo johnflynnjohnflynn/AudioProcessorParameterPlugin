@@ -68,21 +68,21 @@ int AudioProcessorParameterPluginAudioProcessor::getCurrentProgram()
     return 0;
 }
 
-void AudioProcessorParameterPluginAudioProcessor::setCurrentProgram (int index)
+void AudioProcessorParameterPluginAudioProcessor::setCurrentProgram (int /*index*/)
 {
 }
 
-const String AudioProcessorParameterPluginAudioProcessor::getProgramName (int index)
+const String AudioProcessorParameterPluginAudioProcessor::getProgramName (int /*index*/)
 {
     return String();
 }
 
-void AudioProcessorParameterPluginAudioProcessor::changeProgramName (int index, const String& newName)
+void AudioProcessorParameterPluginAudioProcessor::changeProgramName (int /*index*/, const String& /*newName*/)
 {
 }
 
 //==============================================================================
-void AudioProcessorParameterPluginAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
+void AudioProcessorParameterPluginAudioProcessor::prepareToPlay (double /*sampleRate*/, int /*samplesPerBlock*/)
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
@@ -94,7 +94,7 @@ void AudioProcessorParameterPluginAudioProcessor::releaseResources()
     // spare memory, etc.
 }
 
-void AudioProcessorParameterPluginAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages)
+void AudioProcessorParameterPluginAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& /*midiMessages*/)
 {
     const int totalNumInputChannels  = getTotalNumInputChannels();
     const int totalNumOutputChannels = getTotalNumOutputChannels();

@@ -53,12 +53,12 @@ void AudioProcessorParameterPluginAudioProcessorEditor::resized()
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
 
-    constexpr int unit = 8;
-    constexpr int margin = 2 * unit;
-    constexpr int offsetAdd = 4 * unit;
-    constexpr int offsetMult = 6 * unit;
-    constexpr int sliderWidth = 60 * unit;
-    constexpr int sliderHeight = 3 * unit;
+    const int unit = 8;
+    const int margin = 2 * unit;
+    const int offsetAdd = 4 * unit;
+    const int offsetMult = 6 * unit;
+    const int sliderWidth = 60 * unit;
+    const int sliderHeight = 3 * unit;
 
     boolSlider_ .setBounds (margin, offsetAdd + 0 * offsetMult, sliderWidth, sliderHeight);
     floatSlider_.setBounds (margin, offsetAdd + 1 * offsetMult, sliderWidth, sliderHeight);
