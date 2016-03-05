@@ -53,20 +53,17 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
 
 private:
-    AudioParameterBool*   boolParam_   {nullptr};   // When we addParameter() to the
-    AudioParameterFloat*  floatParam_  {nullptr};   // processor's managedParameters
-    AudioParameterInt*    intParam_    {nullptr};   // OwnedArray, we rely on that
-                                                    // to manage/delete/etc.
+    AudioParameterBool*  boolParam_  {nullptr};     // Raw pointers here. Processor's
+    AudioParameterFloat* floatParam_ {nullptr};     // managedParameters OwnedArray
+    AudioParameterInt*   intParam_   {nullptr};     // owns and manages. (See xtor.)
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioProcessParameterPluginAudioProcessor)
 };
 
 
-namespace NonMember {                           // Some helper functions that don't
-                                                // need to be inside the processor
-template <typename Element>
-bool indexInVector (int index, const std::vector<Element>& container);
+namespace NonMember // Some helper functions that don't need to be inside the processor
+{
 
 void printParams(const AudioProcessor& processor); // for debugging
 

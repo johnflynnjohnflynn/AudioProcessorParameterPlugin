@@ -15,12 +15,11 @@
 //==============================================================================
 AudioProcessParameterPluginAudioProcessor::AudioProcessParameterPluginAudioProcessor()
 {
-
-    // We addParameter() to the processor's OwnedArray<AudioProcessorParameter>
-    // managedParameters, which takes ownership and deletes appropriately
-    addParameter (boolParam_   = new AudioParameterBool  {"BoolID", "Bool", false});
-    addParameter (floatParam_  = new AudioParameterFloat {"FloatID", "Float", -24.0f, 0.0f, 0.0f});
-    addParameter (intParam_    = new AudioParameterInt   {"IntID",   "Int",   -10,   10,    0});
+    // addParameter()s to the processor's OwnedArray<AudioProcessorParameter>
+    // managedParameters (which takes ownership and deletes appropriately)
+    addParameter (boolParam_  = new AudioParameterBool  {"BoolID", "Bool", false});
+    addParameter (floatParam_ = new AudioParameterFloat {"FloatID", "Float", -24.0f, 0.0f, 0.0f});
+    addParameter (intParam_   = new AudioParameterInt   {"IntID",   "Int",   -10,   10,    0});
 
     NonMember::printParams (*this);
 }

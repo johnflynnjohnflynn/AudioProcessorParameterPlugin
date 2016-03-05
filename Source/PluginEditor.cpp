@@ -15,9 +15,9 @@
 //==============================================================================
 AudioProcessParameterPluginAudioProcessorEditor::AudioProcessParameterPluginAudioProcessorEditor (AudioProcessParameterPluginAudioProcessor& p)
     : AudioProcessorEditor (&p),
-      boolLabel_  {"", "Bool"}, // (No component name, just set label text)
-      floatLabel_ {"", "Float"},
-      intLabel_   {"", "Int"},
+      boolLabel_  {String::empty, "Bool"}, // (No component name, just set label text)
+      floatLabel_ {String::empty, "Float"},
+      intLabel_   {String::empty, "Int"},
       boolSlider_  {*p.getParameters()[boolName]},
       floatSlider_ {*p.getParameters()[floatName]},
       intSlider_   {*p.getParameters()[intName]},

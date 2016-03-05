@@ -30,8 +30,8 @@ public:
     void resized() override;
 
 private:
-    enum SymbolicIndexNames     // Use symbolic names instead of
-    {                           // managedParameters index numbers.
+    enum SymbolicIndexNames     // Allow use of symbolic names instead
+    {                           // of managedParameters indices.
         boolName,               // Must have the same ordering as
         floatName,              // processor's managedParameters!!!
         intName
