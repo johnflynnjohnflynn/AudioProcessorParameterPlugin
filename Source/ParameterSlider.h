@@ -10,6 +10,7 @@
 #ifndef PARAMETERSLIDER_H_INCLUDED
 #define PARAMETERSLIDER_H_INCLUDED
 
+// (Taken from the JUCE demo plugin PluginEditor.cpp)
 
 //==============================================================================
 // This is a handy slider subclass that controls an AudioProcessorParameter
