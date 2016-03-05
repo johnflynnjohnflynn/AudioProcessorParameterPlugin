@@ -29,6 +29,34 @@ public:
     void resized() override;
 
 private:
+    enum SymbolicIndexNames     // Use symbolic names instead of            // better way?
+    {                           // managedParameters index numbers.
+        boolName,               // Must have the same ordering as
+        choiceName,             // processor's managedParameters.
+        floatName,
+        intName
+    };
+
+    enum RelativeLayout
+    {                           // Measurements for relative layout
+        unit = 8,
+        width = 64 * unit,
+        margin = 2 * unit,
+        widthComponent = width - margin * 2,
+        heightComponent = 3 * unit
+    };
+
+    class ParameterSlider;
+
+    Label boolLabel_   {"", "Bool"}; // (No component name, just set label text)
+    Label choiceLabel_ {"", "Choice"};
+    Label floatLabel_  {"", "Float"};
+    Label intLabel_    {"", "Int"};
+    ScopedPointer<ParameterSlider> boolSlider_;
+    ComboBox choiceComboBox_ { };
+    ScopedPointer<ParameterSlider> floatSlider_;
+    ScopedPointer<ParameterSlider> intSlider_;
+
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
     AudioProcessParameterPluginAudioProcessor& processor;

@@ -52,6 +52,8 @@ public:
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
+    const StringArray& getChoiceStrings() { return choiceStrings; };
+
 private:
     AudioParameterBool*   boolParam_   {nullptr};   // When we addParameter() to the
     AudioParameterChoice* choiceParam_ {nullptr};   // processor's managedParameters

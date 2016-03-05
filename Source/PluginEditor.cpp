@@ -11,32 +11,101 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
+//==============================================================================
+// This is a handy slider subclass that controls an AudioProcessorParameter
+// (may move this class into the library itself at some point in the future..)
+class AudioProcessParameterPluginAudioProcessorEditor::ParameterSlider   : public Slider,
+                                                                           private Timer
+{
+public:
+    ParameterSlider (AudioProcessorParameter& p)
+        : Slider (p.getName (256)), param (p)
+    {
+        setRange (0.0, 1.0, 0.0);
+        startTimerHz (30);
+        updateSliderPos();
+    }
+
+    void valueChanged() override
+    {
+        param.setValueNotifyingHost ((float) Slider::getValue());
+    }
+
+    void timerCallback() override       { updateSliderPos(); }
+
+    void startedDragging() override     { param.beginChangeGesture(); }
+    void stoppedDragging() override     { param.endChangeGesture();   }
+
+    double getValueFromText (const String& text) override   { return param.getValueForText (text); }
+    String getTextFromValue (double value) override         { return param.getText ((float) value, 1024); }
+
+    void updateSliderPos()
+    {
+        const float newValue = param.getValue();
+
+        if (newValue != (float) Slider::getValue() && ! isMouseButtonDown())
+            Slider::setValue (newValue);
+    }
+
+    AudioProcessorParameter& param;
+
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterSlider)
+};
 
 //==============================================================================
 AudioProcessParameterPluginAudioProcessorEditor::AudioProcessParameterPluginAudioProcessorEditor (AudioProcessParameterPluginAudioProcessor& p)
     : AudioProcessorEditor (&p), processor (p)
 {
+    // add some sliders..
+    boolSlider_  = new ParameterSlider (*p.getParameters()[boolName]);  // better way of getting param?
+    choiceComboBox_.addItemList (p.getChoiceStrings(), 1);
+    floatSlider_ = new ParameterSlider (*p.getParameters()[floatName]);
+    intSlider_   = new ParameterSlider (*p.getParameters()[intName]);
+    
+    addAndMakeVisible (boolSlider_);
+    addAndMakeVisible (choiceComboBox_);
+    addAndMakeVisible (floatSlider_);
+    addAndMakeVisible (intSlider_);
+
+    // add some labels for the sliders..
+    addAndMakeVisible (boolLabel_);
+    addAndMakeVisible (choiceLabel_);
+    addAndMakeVisible (floatLabel_);
+    addAndMakeVisible (intLabel_);
+
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    setSize (400, 300);
+    const int numRows = p.getNumParameters();
+    const int height = margin
+                     + numRows * 2 * heightComponent
+                     + margin / 2;
+    setSize (width, height);
 }
 
 AudioProcessParameterPluginAudioProcessorEditor::~AudioProcessParameterPluginAudioProcessorEditor()
 {
+    // Sliders are ScopedPointer<Slider>s so deletes are handled
 }
 
 //==============================================================================
 void AudioProcessParameterPluginAudioProcessorEditor::paint (Graphics& g)
 {
-    g.fillAll (Colours::white);
-
-    g.setColour (Colours::black);
-    g.setFont (15.0f);
-    g.drawFittedText ("Hello World!", getLocalBounds(), Justification::centred, 1);
+    g.fillAll (Colours::lightgrey);
 }
 
 void AudioProcessParameterPluginAudioProcessorEditor::resized()
 {
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
+
+    boolSlider_    ->setBounds (margin, margin + 0 * 2 * heightComponent + 16, widthComponent, heightComponent);
+    choiceComboBox_ .setBounds (margin, margin + 1 * 2 * heightComponent + 16, widthComponent, heightComponent);
+    floatSlider_   ->setBounds (margin, margin + 2 * 2 * heightComponent + 16, widthComponent, heightComponent);
+    intSlider_     ->setBounds (margin, margin + 3 * 2 * heightComponent + 16, widthComponent, heightComponent);
+
+    boolLabel_      .setBounds (margin, margin + 0 * 2 * heightComponent - 4 , widthComponent, heightComponent);
+    choiceLabel_    .setBounds (margin, margin + 1 * 2 * heightComponent - 4 , widthComponent, heightComponent);
+    floatLabel_     .setBounds (margin, margin + 2 * 2 * heightComponent - 4 , widthComponent, heightComponent);
+    intLabel_       .setBounds (margin, margin + 3 * 2 * heightComponent - 4 , widthComponent, heightComponent);
+
 }
