@@ -65,4 +65,14 @@ private:
 };
 
 
+namespace NonMember {                           // Some helper functions that don't
+                                                // need to be inside the processor
+template <typename Element>
+bool indexInVector (int index, const std::vector<Element>& container);
+
+void printParams(const AudioProcessor& processor); // for debugging
+
+} // namespace NonMember
+
+
 #endif  // PLUGINPROCESSOR_H_INCLUDED

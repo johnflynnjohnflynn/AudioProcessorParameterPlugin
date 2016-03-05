@@ -18,7 +18,7 @@ AudioProcessParameterPluginAudioProcessor::AudioProcessParameterPluginAudioProce
 
     // We addParameter() to the processor's OwnedArray<AudioProcessorParameter>
     // managedParameters, which takes ownership and deletes appropriately
-    addParameter (boolParam_   = new AudioParameterBool {"BoolID", "Bool", false});
+    addParameter (boolParam_   = new AudioParameterBool {"BoolID", "Bool__", false});
 
     constexpr int defaultChoiceIndex = 0;
     choiceStrings.add ("First option");
@@ -26,8 +26,10 @@ AudioProcessParameterPluginAudioProcessor::AudioProcessParameterPluginAudioProce
     choiceStrings.add ("A third option");
     addParameter (choiceParam_ = new AudioParameterChoice {"ChoiceID", "Choice", choiceStrings, defaultChoiceIndex});
 
-    addParameter (floatParam_  = new AudioParameterFloat {"FloatID", "Float", -24.0f, 0.0f, 0.0f});
-    addParameter (intParam_    = new AudioParameterInt   {"IntID",   "Int",   -64,   63,    0});
+    addParameter (floatParam_  = new AudioParameterFloat {"FloatID", "Float_", -24.0f, 0.0f, 0.0f});
+    addParameter (intParam_    = new AudioParameterInt   {"IntID",   "Int___",   -64,   63,    0});
+
+    NonMember::printParams (*this);
 }
 
 AudioProcessParameterPluginAudioProcessor::~AudioProcessParameterPluginAudioProcessor()
@@ -178,4 +180,19 @@ void AudioProcessParameterPluginAudioProcessor::setStateInformation (const void*
 AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new AudioProcessParameterPluginAudioProcessor();
+}
+
+
+//==============================================================================
+//==============================================================================
+void NonMember::printParams(const AudioProcessor& processor)
+{
+    String message;
+
+    for (int i = 0; i < processor.getParameters().size(); ++i) {
+        message << processor.getParameters()[i]->getName(64) << "="
+                << processor.getParameters()[i]->getValue()  << "\n";
+    }
+
+    Logger::outputDebugString (message);
 }
