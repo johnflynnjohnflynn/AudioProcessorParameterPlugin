@@ -53,9 +53,9 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
 
 private:
-    AudioParameterBool*  boolParam_  {nullptr};     // Raw pointers here. Processor's
-    AudioParameterFloat* floatParam_ {nullptr};     // managedParameters OwnedArray
-    AudioParameterInt*   intParam_   {nullptr};     // owns and manages. (See xtor.)
+    AudioParameterBool*  boolParam_;    // Raw pointers here. Processor's
+    AudioParameterFloat* floatParam_;   // managedParameters OwnedArray
+    AudioParameterInt*   intParam_;     // owns and manages. (See xtor.)
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioProcessorParameterPluginAudioProcessor)

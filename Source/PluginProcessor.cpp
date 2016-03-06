@@ -14,6 +14,9 @@
 
 //==============================================================================
 AudioProcessorParameterPluginAudioProcessor::AudioProcessorParameterPluginAudioProcessor()
+    : boolParam_  {nullptr},
+      floatParam_ {nullptr},
+      intParam_   {nullptr}
 {
     // addParameter()s to the processor's OwnedArray<AudioProcessorParameter>
     // managedParameters (which takes ownership and deletes appropriately)
