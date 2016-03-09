@@ -32,11 +32,6 @@ AudioProcessorParameterPluginAudioProcessor::~AudioProcessorParameterPluginAudio
 }
 
 //==============================================================================
-const String AudioProcessorParameterPluginAudioProcessor::getName() const
-{
-    return JucePlugin_Name;
-}
-
 bool AudioProcessorParameterPluginAudioProcessor::acceptsMidi() const
 {
    #if JucePlugin_WantsMidiInput
@@ -53,35 +48,6 @@ bool AudioProcessorParameterPluginAudioProcessor::producesMidi() const
    #else
     return false;
    #endif
-}
-
-double AudioProcessorParameterPluginAudioProcessor::getTailLengthSeconds() const
-{
-    return 0.0;
-}
-
-int AudioProcessorParameterPluginAudioProcessor::getNumPrograms()
-{
-    return 1;   // NB: some hosts don't cope very well if you tell them there are 0 programs,
-                // so this should be at least 1, even if you're not really implementing programs.
-}
-
-int AudioProcessorParameterPluginAudioProcessor::getCurrentProgram()
-{
-    return 0;
-}
-
-void AudioProcessorParameterPluginAudioProcessor::setCurrentProgram (int /*index*/)
-{
-}
-
-const String AudioProcessorParameterPluginAudioProcessor::getProgramName (int /*index*/)
-{
-    return String();
-}
-
-void AudioProcessorParameterPluginAudioProcessor::changeProgramName (int /*index*/, const String& /*newName*/)
-{
 }
 
 //==============================================================================
@@ -117,11 +83,6 @@ void AudioProcessorParameterPluginAudioProcessor::processBlock (AudioSampleBuffe
 }
 
 //==============================================================================
-bool AudioProcessorParameterPluginAudioProcessor::hasEditor() const
-{
-    return true; // (change this to false if you choose to not supply an editor)
-}
-
 AudioProcessorEditor* AudioProcessorParameterPluginAudioProcessor::createEditor()
 {
     return new AudioProcessorParameterPluginAudioProcessorEditor (*this);
